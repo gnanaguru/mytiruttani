@@ -1,0 +1,21 @@
+<?php
+/**
+ * Implements hook_form_alter().
+ */
+function mobile_login_form_alter(&$form, $form_state, $form_id) {
+	print "new";
+  switch ($form_id) {
+    case 'user_login_block':
+    case 'user_login' :
+      array_unshift($form['#submit'], 'custom_login_submit');
+      break;
+  }
+}
+
+/**
+ * Custom submit handler
+ */
+function custom_login_submit($form, &$form_state) {
+  echo "<pre>"; print_r($form_state);
+  exit;
+}
